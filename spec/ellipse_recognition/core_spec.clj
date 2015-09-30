@@ -10,4 +10,8 @@
          (apply max (flatten population))
          1)))
 
-  )
+  (it "should give a population the minimum value of 0"
+      (let [population (initialize-population-with-size 100)]
+        (should=
+         (apply min (flatten population))
+         0))))
