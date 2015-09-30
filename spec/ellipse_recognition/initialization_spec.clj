@@ -16,7 +16,7 @@
          (apply min (flatten population))
          0)))
 
-  (it "should have the same size of the passed parameter"
+  (it "should give the population the same size of the passed parameter"
       (let [population (initialize-population-with-size 10)]
         (should=
          (count population)
