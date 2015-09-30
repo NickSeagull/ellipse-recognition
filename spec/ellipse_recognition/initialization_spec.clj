@@ -1,4 +1,4 @@
-(ns ellipse-recognition.core-spec
+(ns ellipse-recognition.initialization-spec
   (:require [speclj.core :refer :all]
             [ellipse-recognition.initialization :refer :all]))
 
