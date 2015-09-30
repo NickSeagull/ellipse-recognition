@@ -1,6 +1,17 @@
 (ns ellipse-recognition.initialization)
 
+(def individual-parameters {:a     5
+                            :b     5
+                            :x0    6
+                            :y0    6
+                            :alpha 7})
+
+(def individual-size (reduce + (vals individual-parameters)))
+
+(defn- make-random-individual []
+  (take individual-size (repeatedly #(rand-int 2))))
+
 (defn initialize-population-with-size [size]
   "Gives a random population based on the encoding
-  at the individual-parameters record"
-  [[1 0]])
+  at the individual-parameters map"
+  (take size (repeatedly #(make-random-individual))))
