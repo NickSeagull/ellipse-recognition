@@ -5,7 +5,8 @@
 
 (defn- mutate-individual [probability individual]
   (if (< (rand) probability)
-    (flip-bit (rand-int (count individual)) individual)))
+    (flip-bit (rand-int (count individual)) individual)
+    individual))
 
 (defn bit-string-mutate [population]
   (map (partial mutate-individual (/ 1 (count population))) population))

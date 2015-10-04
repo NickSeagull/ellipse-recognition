@@ -3,7 +3,7 @@
 (defn- two-point-crossover-individuals [a b first-point second-point]
   (vec (concat
         (->> a (take first-point))
-        (->> b (drop first-point) (take second-point))
+        (->> b (take second-point) (drop first-point))
         (->> a (drop second-point)))))
 
 (defn- two-point-crossover-pair [[first-individual second-individual]]

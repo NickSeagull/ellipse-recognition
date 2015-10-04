@@ -4,22 +4,35 @@
             [ellipse-recognition.initialization :refer :all]
             [ellipse-recognition.mutation :refer :all]))
 
+(defn- combine [population-a population-b]
+  (vec (concat population-a population-b)))
+
+(defn- truncate [population scores percentage elite-size]
+  (drop elite-size (select-by-truncation percentage population scores)))
+
+(defn- get-old-individuals [population scores truncation-percent elite-size]
+  (combine
+   (select-by-elitism elite-size population scores)
+   (truncate population scores truncation-percent elite-size)))
+
+(defn- get-size-difference [a b]
+  (- (count a) (count b)))
+
+(defn- generate-new-population [current-population scores truncate-percent elite-size]
+  (let [old-individuals (get-old-individuals current-population scores truncate-percent elite-size)]
+    (combine
+     old-individuals
+     (initialize-population-with-size (get-size-difference current-population old-individuals)))))
+
 (defn evolve
   [population image-matrix elite-size truncate-percent mutation-probability generations-number]
   (loop [remaining-generations generations-number
-         current-population population
-         scores (evaluate population image-matrix)]
+         current-population population]
     (if-not (zero? remaining-generations)
-      (let [elite (select-by-elitism elite-size population scores)
-            truncated (drop elite-size
-                            (select-by-truncation
-                             truncate-percent
-                             population scores))
-            old-individuals (vec (concat elite truncated))
-            random-rest (initialize-population-with-size (- (count population) (count old-individuals)))
-            new-population (vec (concat elite truncated random-rest))]
-        (recur
-          (dec remaining-generations)
-          (mutate new-population mutation-probability)
-          (evaluate new-population image-matrix)))
+        (let [scores (evaluate current-population image-matrix)]
+          (recur
+            (dec remaining-generations)
+            (mutate
+              (generate-new-population current-population scores truncate-percent elite-size)
+              mutation-probability)))
       current-population)))

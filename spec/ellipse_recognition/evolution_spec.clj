@@ -5,7 +5,7 @@
             [ellipse-recognition.evolution :refer :all]))
 
 (describe "evolution"
-          (it "it applies all the operators with the parameters passed to it"
+          (it "applies all the operators with the parameters passed to it"
               (let [image-name "resources/coins.jpg"
                     image-matrix (load-image-as-binary-matrix image-name 0.5)
                     elite-size 2

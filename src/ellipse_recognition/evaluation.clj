@@ -3,7 +3,7 @@
             [ellipse-recognition.utility :refer :all]))
 
 (defn- get-slice [individual [lower-limit upper-limit]]
-  (subvec (vec individual) lower-limit (inc upper-limit)))
+  (subvec (vec individual) lower-limit upper-limit))
 
 (defn- destructure-individual [individual]
   (map (partial get-slice individual) (vals individual-bit-encoding)))
@@ -64,8 +64,8 @@
 (defn- get-matching-ratio-between [image ellipse]
   (/ (get-matching-points image ellipse) (count ellipse)))
 
-(defn- evaluate-individual [individual image]
+(defn- evaluate-individual [image individual]
   (get-matching-ratio-between image (build-ellipse-from individual)))
 
 (defn evaluate [population image]
-  (map #(evaluate-individual % image) population))
+  (map (partial evaluate-individual image) population))
