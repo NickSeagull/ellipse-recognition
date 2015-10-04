@@ -1,11 +1,7 @@
 (ns ellipse-recognition.mutation)
 
 (defn- flip-bit [bit-number individual]
-  (Math/abs (- (individual bit-number) 1)))
-
-(defn- bit-string-mutate-individual [population-size individual]
-  (if (< (rand) (/ 1 population-size))
-    (flip-bit (rand-int (count individual)) individual)))
+  (assoc (vec individual) bit-number (Math/abs (- (nth individual bit-number) 1))))
 
 (defn- mutate-individual [probability individual]
   (if (< (rand) probability)
