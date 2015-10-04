@@ -7,7 +7,7 @@
   (subvec (sort-population population scores) 0 selection-size))
 
 (defn- get-size-by-percentage [percentage population]
-  (* (count population) (/ percentage 100)))
+  (int (* (count population) (/ percentage 100))))
 
 (defn select-by-truncation [selection-percentage population scores]
   (select-by-elitism
