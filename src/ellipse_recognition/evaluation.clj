@@ -44,10 +44,10 @@
 (defn- decode-angle [angle]
   (Math/toRadians (* (/ angle 127) 90)))
 
-(defn- build-ellipse-from [individual]
+(defn build-ellipse-from [individual]
   (let [[a b x0 y0 a] (decode-genes (destructure-individual individual))
         alpha (decode-angle a)]
-    (map (partial make-rotated-ellipse a b x0 y0 alpha)
+    (map (partial make-rotated-ellipse (+ a 5) (+ b 5) (+ x0 19) (+ y0 19) alpha)
          (range 0.2 (two-pi) 0.2))))
 
 (defn- point-in-bounds? [image point-x point-y]
@@ -68,4 +68,4 @@
   (get-matching-ratio-between image (build-ellipse-from individual)))
 
 (defn evaluate [population image]
-  (map (partial evaluate-individual image) population))
+  (vec (map (partial evaluate-individual image) population)))

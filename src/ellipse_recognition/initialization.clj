@@ -7,4 +7,4 @@
 (defn initialize-population-with-size [size]
   "Gives a random population based on the encoding
   at the individual-bit-encoding map"
-  (take size (repeatedly #(make-random-individual))))
+  (vec (map vec (take size (repeatedly #(make-random-individual))))))

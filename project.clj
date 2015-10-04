@@ -9,5 +9,6 @@
                  [net.mikera/vectorz-clj "0.35.0"]
                  [net.mikera/image-matrix "0.1.0"]]
   :profiles {:dev {:dependencies [[speclj "3.3.1"]]}}
+  :main ellipse-recognition.core
   :plugins [[speclj "3.3.1"]]
   :test-paths ["spec"])
