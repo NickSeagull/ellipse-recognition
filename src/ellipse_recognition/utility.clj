@@ -13,13 +13,19 @@
   (if (> value threshold) 1 0))
 
 (defn- apply-threshold [image-matrix threshold]
-  (map (partial flatten-value threshold) image-matrix))
+  (emap (partial flatten-value threshold) image-matrix))
+
+(defn- flatten-color [rgb-list]
+  (esum rgb-list))
+
+(defn- grayscale-row [image-row]
+  (map flatten-color image-row))
 
 (defn- color->grayscale [image-matrix]
-  (map #(/ (reduce + %) 3) image-matrix))
+  (map grayscale-row image-matrix))
 
 (defn- drop-alpha-channel [image-matrix]
-  (map (partial take 3) image-matrix))
+  (map (partial map (partial take 3)) image-matrix))
 
 (defn- load-image-as-matrix [image-path]
   (coerce [] (image-core/load-image image-path)))
