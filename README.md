@@ -1,6 +1,6 @@
 # Ellipse Recognition through Genetic Algorithms in Clojure
 
-### NOTE: This algorithm doesn't work yet and converges prematurely, it needs to be fixed
+### NOTE: This algorithm doesn't work yet and converges prematurely, it needs to be fixed.
 Genetic algorithm that finds the best ellipse that fits in the image.
 
 Ideally, the image should be in black and white or optimized in grayscale, although, theorically any image would suffice.
