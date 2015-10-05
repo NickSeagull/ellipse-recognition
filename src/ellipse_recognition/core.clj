@@ -8,13 +8,13 @@
             [mikera.image.core :as image-core]))
 
 (def image-path "resources/coins.jpg")
-(def threshold 0.2)
+(def threshold 0.5)
 (def image-matrix (load-image-as-binary-matrix image-path threshold))
-(def elite-size 1)
-(def truncate-percent 64)
+(def elite-size 2)
+(def truncate-percent 24)
 (def population-size 100)
-(def mutation-probability (/ 1 population-size))
-(def number-of-generations 50)
+(def mutation-probability (/ 5 population-size))
+(def number-of-generations 500)
 
 (def evolved-population
   (evolve
