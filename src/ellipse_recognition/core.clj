@@ -7,7 +7,7 @@
             [ellipse-recognition.image-encoding :refer :all]
             [mikera.image.core :as image-core]))
 
-(def image-path "resources/coins.jpg")
+(def image-path "resources/coins2.jpg")
 (def threshold 0.5)
 (def image-matrix (load-image-as-binary-matrix image-path threshold))
 (def elite-size 2)
